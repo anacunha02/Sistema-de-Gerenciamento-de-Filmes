@@ -1,0 +1,45 @@
+package com.Senai.Filmes.Model;
+
+import com.Senai.Filmes.Model.Enums.Cargo;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+@Data
+@NoArgsConstructor
+@Entity
+@Table (name = "cUsuarios")
+
+public class Usuario {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID uuid;
+
+    @NotBlank(message= " nome obrigatorio")
+    private String nome;
+
+    @NotBlank (message =  " o e-mail é obrigatorio")
+    private String email;
+
+    @Column(unique = true)
+    private String emails;
+
+    @NotBlank(message = " a senha é obrigatoria")
+    private String senha;
+
+    @NotNull (message = "O cargo é obrigatorio")
+
+    @Enumerated(EnumType.STRING)
+    private Cargo cargo;
+
+    @CreationTimestamp
+    private LocalDateTime CriadoEm;
+
+}
+
